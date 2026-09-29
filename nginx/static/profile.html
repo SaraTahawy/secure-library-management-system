@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Secure Library - Profile</title>
+    <link rel="stylesheet" href="/app.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>
+            <strong>Secure Library</strong>
+            <small>Profile</small>
+          </span>
+        </a>
+        <nav class="nav-pills" aria-label="Main">
+          <a href="/">Home</a>
+          <a href="/#library">Library</a>
+        </nav>
+        <div class="top-actions">
+          <button id="logout-btn" class="icon-button" type="button" title="Logout" aria-label="Logout">
+            <span aria-hidden="true">Logout</span>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="profile-page">
+          <div class="profile-card">
+            <span class="mini-label">Account</span>
+            <h1>Profile</h1>
+            <p class="profile-note">Manage your account information.</p>
+
+            <div class="profile-form">
+              <label>
+                Full Name
+                <input id="profile-name" type="text" readonly>
+              </label>
+              <label>
+                Email
+                <input id="profile-email" type="email" readonly>
+              </label>
+
+              <div id="password-step">
+                <label>
+                  New Password
+                  <input id="new-password" type="password" minlength="10" autocomplete="new-password">
+                </label>
+                <button id="change-password-btn" class="primary wide" type="button">Change Password</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="/profile.js"></script>
+  </body>
+</html>

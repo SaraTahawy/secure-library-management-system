@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Secure Library</title>
+    <link rel="stylesheet" href="/app.css?v=17">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>
+            <strong>Secure Library</strong>
+            <small>Distributed Security Console</small>
+          </span>
+        </a>
+        <nav class="nav-pills" aria-label="Main">
+          <a href="#dashboard" data-view-link="dashboard">Dashboard</a>
+          <a href="#my-books" data-view-link="my-books" data-user-only>My Borrowed Books</a>
+          <a href="#library" data-view-link="library" data-user-only>Library</a>
+          <a href="#ai" data-view-link="ai">AI</a>
+          <a href="#catalog" data-view-link="catalog" data-admin-only>Catalog</a>
+          <a href="#users" data-view-link="users" data-admin-only>Users</a>
+          <a href="#borrowing" data-view-link="borrowing" data-admin-only>Borrowing</a>
+          <a href="#audit" data-view-link="audit" data-admin-only>Audit</a>
+          <a href="#security" data-view-link="security" data-admin-only>Security</a>
+        </nav>
+        <div class="top-actions">
+          <button id="logout-btn" class="icon-button" type="button" title="Logout" aria-label="Logout">
+            <span aria-hidden="true">Logout</span>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section id="dashboard" class="hero-section" data-view="dashboard">
+          <div class="hero-copy">
+            <p class="eyebrow">Secure library system</p>
+            <h1 id="dashboard-title">Dashboard</h1>
+            <p id="session-summary" class="lede">Secure access for library operations.</p>
+            <div class="hero-actions">
+              <input id="search-books" type="text" placeholder="Search books..." class="search-input">
+              <button id="search-btn" class="primary">Search</button>
+              <a class="secondary" href="#library" data-view-link="library" data-user-only>Library</a>
+            </div>
+          </div>
+
+          <div class="vault-visual" aria-hidden="true">
+            <div class="scanline"></div>
+            <div class="vault-top">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="vault-ring">
+              <div class="ring one"></div>
+              <div class="ring two"></div>
+              <div class="ring three"></div>
+              <div class="lock-core">
+                <span></span>
+              </div>
+            </div>
+            <div class="node-map">
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+          </div>
+        </section>
+
+        <section id="my-books" class="surface page-surface" data-view="my-books" data-user-only>
+          <div class="section-head stacked-head">
+            <div>
+              <span class="mini-label">Loans</span>
+              <h2>My Borrowed Books</h2>
+              <p>Books you have borrowed and their due dates.</p>
+            </div>
+          </div>
+          <div class="content-grid">
+            <div id="borrowed-books-list" class="book-list"></div>
+            <div id="reservations-list" class="book-list"></div>
+          </div>
+        </section>
+
+        <section class="workspace">
+          <section class="content-grid">
+            <section class="metrics-grid" id="metrics" data-view="dashboard" aria-label="Monitoring metrics"></section>
+
+            <section id="catalog" class="surface catalog-surface" data-view="catalog" data-admin-only>
+              <div class="section-head">
+                <div>
+                  <span class="mini-label">Catalog</span>
+                  <h2>Books inventory</h2>
+                </div>
+                <button id="refresh-books" class="quiet" type="button">Refresh</button>
+              </div>
+              <form id="book-form" class="book-composer">
+                <input name="title" placeholder="Book title" value="Distributed Systems" required>
+                <input name="author" placeholder="Author" value="Tanenbaum" required>
+                <input name="category" placeholder="Category" value="Security">
+                <input name="isbn" placeholder="ISBN" required>
+                <input name="total_copies" type="number" min="0" max="500" value="3" required>
+                <button id="add-book-btn" class="primary" type="submit">Add Book</button>
+              </form>
+              <pre id="book-result" class="form-result">Ready.</pre>
+              <div id="books-list" class="book-list"></div>
+            </section>
+
+            <section id="library" class="surface catalog-surface" data-view="library" data-user-only>
+              <div class="section-head">
+                <div>
+                  <span class="mini-label">Library</span>
+                  <h2>Available Books</h2>
+                </div>
+                <button id="refresh-user-books" class="quiet" type="button">Refresh</button>
+              </div>
+              <div id="user-books-list" class="book-list"></div>
+            </section>
+
+            <section id="ai" class="surface ai-surface" data-view="ai">
+              <div class="section-head">
+                <div>
+                  <span class="mini-label">AI service</span>
+                  <h2>Library assistant</h2>
+                </div>
+              </div>
+              <div class="ai-panel">
+                <div id="ai-messages" class="chat-messages" aria-live="polite">
+                  <div class="chat-message assistant">Hi. Ask about borrowed books, approvals, security, or the system architecture.</div>
+                </div>
+                <div class="quick-prompts">
+                  <button class="quick-prompt" type="button" data-question="What borrowed books do I have?">Borrowed books</button>
+                  <button class="quick-prompt" type="button" data-question="How does borrow approval work?">Borrow approval</button>
+                  <button class="quick-prompt" type="button" data-question="What security controls are implemented?">Security controls</button>
+                  <button class="quick-prompt" type="button" data-question="What services are in this distributed system?">Architecture</button>
+                </div>
+                <form id="ai-chat-form" class="chat-input">
+                  <input id="ai-question" type="text" placeholder="Type your question..." autocomplete="off">
+                  <button id="ai-search-btn" class="primary" type="submit">Send</button>
+                </form>
+              </div>
+            </section>
+
+            <section id="security" class="security-layout" data-view="security" data-admin-only>
+              <div class="surface security-controls-surface">
+                <div class="section-head">
+                  <div>
+                    <span class="mini-label">Controls</span>
+                    <h2>Security controls</h2>
+                  </div>
+                </div>
+                <div class="security-stack">
+                  <div>
+                    <span>JWT</span>
+                    <strong>60 min</strong>
+                  </div>
+                  <div>
+                    <span>Hashing</span>
+                    <strong>bcrypt</strong>
+                  </div>
+                  <div>
+                    <span>Files</span>
+                    <strong>Fernet</strong>
+                  </div>
+                  <div>
+                    <span>Queue</span>
+                    <strong>RabbitMQ</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="two-column security-tools">
+                <div class="surface upload-surface">
+                  <div class="section-head">
+                    <div>
+                      <span class="mini-label">Vault</span>
+                      <h2>Encrypted document intake</h2>
+                    </div>
+                  </div>
+                  <form id="upload-form" class="upload-zone">
+                    <input id="file-input" name="file" type="file" accept=".pdf,.txt,.docx" required>
+                    <label for="file-input">
+                      <span class="upload-icon" aria-hidden="true"></span>
+                      <strong>Drop a document</strong>
+                      <small id="selected-file-name">PDF, TXT, DOCX up to 5MB</small>
+                    </label>
+                    <button class="primary wide" type="submit">Encrypt and Queue</button>
+                  </form>
+                  <pre id="upload-result" class="console-output">Choose a file to encrypt and send to the worker queue.</pre>
+                </div>
+
+                <div class="surface attack-surface">
+                  <div class="section-head">
+                    <div>
+                      <span class="mini-label">Attack lab</span>
+                      <h2>Security checks</h2>
+                    </div>
+                  </div>
+                  <div class="attack-grid">
+                    <button id="missing-token" class="attack-button" type="button"><span>401</span>Missing token</button>
+                    <button id="bad-token" class="attack-button" type="button"><span>401</span>Bad token</button>
+                    <button id="bad-input" class="attack-button" type="button"><span>422</span>Bad input</button>
+                  </div>
+                  <pre id="attack-output" class="console-output">Run a check.</pre>
+                </div>
+              </div>
+
+              <div class="surface documents-surface">
+                <div class="section-head">
+                  <div>
+                    <span class="mini-label">Uploads</span>
+                    <h2>Uploaded documents</h2>
+                  </div>
+                  <button id="refresh-documents" class="quiet" type="button">Refresh</button>
+                </div>
+                <div id="documents-list" class="book-list"></div>
+              </div>
+            </section>
+
+            <section id="audit" class="surface audit-surface" data-view="audit" data-admin-only>
+              <div class="section-head">
+                <div>
+                  <span class="mini-label">Audit trail</span>
+                  <h2>Critical events</h2>
+                </div>
+                <button id="refresh-logs" class="quiet" type="button">Refresh</button>
+              </div>
+              <div id="logs-list" class="timeline"></div>
+            </section>
+
+            <section id="users" class="surface users-surface" data-view="users" data-admin-only>
+              <div class="section-head">
+                <div>
+                  <span class="mini-label">Users</span>
+                  <h2>User management</h2>
+                </div>
+                <button id="refresh-users" class="quiet" type="button">Refresh</button>
+              </div>
+              <div id="users-list" class="user-list"></div>
+            </section>
+
+            <section id="borrowing" class="surface loans-surface" data-view="borrowing" data-admin-only>
+              <div class="section-head">
+                <div>
+                  <span class="mini-label">Borrowing</span>
+                  <h2>Loans and requests</h2>
+                </div>
+                <button id="refresh-loans" class="quiet" type="button">Refresh</button>
+              </div>
+              <div id="admin-reservations-list" class="book-list"></div>
+              <div id="admin-loans-list" class="book-list"></div>
+            </section>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js?v=17"></script>
+  </body>
+</html>

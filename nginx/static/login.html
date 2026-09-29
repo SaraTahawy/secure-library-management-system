@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Secure Library - Login</title>
+    <link rel="stylesheet" href="/login.css?v=2">
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-card">
+        <div class="brand-section">
+          <div class="brand-logo">
+            <div class="logo-icon">
+              <span></span>
+            </div>
+          </div>
+          <h1>Secure Library</h1>
+          <p>Distributed Security Console</p>
+        </div>
+
+        <div class="auth-section">
+          <div class="tabs">
+            <button class="tab active" data-auth-tab="login">Login</button>
+            <button class="tab" data-auth-tab="register">Register</button>
+          </div>
+
+          <form id="login-form" class="auth-form" autocomplete="off">
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input id="login-email" name="email" type="email" autocomplete="off" required>
+            </div>
+            <div class="form-group">
+              <label for="login-password">Password</label>
+              <input id="login-password" name="password" type="password" autocomplete="off" required>
+            </div>
+            <button class="auth-btn primary" type="submit">Sign In</button>
+          </form>
+
+          <form id="register-form" class="auth-form hidden" autocomplete="off">
+            <div class="form-group">
+              <label for="register-name">Full Name</label>
+              <input id="register-name" name="full_name" type="text" autocomplete="off" required minlength="2">
+            </div>
+            <div class="form-group">
+              <label for="register-email">Email</label>
+              <input id="register-email" name="email" type="email" autocomplete="off" required>
+            </div>
+            <div class="form-group">
+              <label for="register-password">Password</label>
+              <input id="register-password" name="password" type="password" autocomplete="off" required minlength="10">
+            </div>
+            <button class="auth-btn primary" type="submit">Create Account</button>
+          </form>
+
+          <div class="demo-section">
+            <a class="auth-btn oauth" href="/auth/oauth/google/login">Continue with Google</a>
+          </div>
+        </div>
+
+        <div class="security-info">
+          <div class="security-item">
+            <span class="security-label">JWT</span>
+            <span class="security-value">60 min</span>
+          </div>
+          <div class="security-item">
+            <span class="security-label">Hashing</span>
+            <span class="security-value">bcrypt</span>
+          </div>
+          <div class="security-item">
+            <span class="security-label">Files</span>
+            <span class="security-value">Fernet</span>
+          </div>
+          <div class="security-item">
+            <span class="security-label">Queue</span>
+            <span class="security-value">RabbitMQ</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="background-decoration">
+        <div class="floating-shapes">
+          <div class="shape shape-1"></div>
+          <div class="shape shape-2"></div>
+          <div class="shape shape-3"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    <script src="/login.js?v=2"></script>
+  </body>
+</html>
